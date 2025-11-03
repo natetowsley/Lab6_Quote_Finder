@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs") %>
+    <title>Quote Finder</title>
+</head>
+<body class = text-center>
+    <h1 class="text-white p-4">Quote Finder</h1>
+
+    <form action="/searchByKeyword" method="GET">
+        <label>Keyword: <input type="text" name="keyword"></label>
+        <button class="btn btn-outline-success">Search</button>
+    </form>
+
+    <br><br>
+
+    <form action="/searchByAuthor" method="GET">
+        <label>
+            Author: <select name="authorId" id="authorDropdown">
+                <% for (let i of rows) { %>
+                    <option value="<%=i.authorId%>"><%= i.firstName %> <%= i.lastName %></option>
+                <% } %>
+            </select>
+        </label>
+        <button class="btn btn-outline-success">Search</button>
+    </form>
+
+    <form action="/searchByCategory" method="GET">
+        <label>
+            Author: <select name="category" id="categoryDropdown">
+                <% for (let i of rows2) { %>
+                    <option value="<%=i.category%>"><%= i.category %></option>
+                <% } %>
+            </select>
+        </label>
+        <button class="btn btn-outline-success">Search</button>
+    </form>
+    <%- include("partials/footer.ejs") %>
+</body>
+</html>

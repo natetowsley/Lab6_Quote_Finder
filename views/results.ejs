@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs") %>
+    <title>Search Results</title>
+</head>
+<body>
+     <% for (let i of rows) { %> 
+        <div class="quoteBox">
+            "<%= i.quote %>"<br>
+            - <a class="authors" href="#" authorId="<%= i.authorId %>"> <%= i.authorId %> <%= i.firstName %> <%= i.lastName %></a>
+        </div>
+        <br><br>
+    <% } %> 
+
+<div id="authorInfo">
+    <h2 id="authorName"></h2>
+    <img id="authorImg">
+</div>
+<%- include("partials/footer.ejs") %>
+    <script>
+        $(".authors").addEventListener("click", getAuthorInfo);
+
+        function $(selector) {
+            return document.querySelector(selector);
+        }
+
+        async function getAuthorInfo() {
+            let authorId = this.getAttribute("authorId");
+            let url = "api/authors/" + authorId;
+            let response = await fetch(url);
+            let data = await response.json();
+            console.log(data);
+            $("#authorName").textContent = data[0].firstName + " " + data[0].lastName;
+            $("#authorImg").src = data[0].portrait;
+
+        }
+
+    </script>
+</body>
+</html>

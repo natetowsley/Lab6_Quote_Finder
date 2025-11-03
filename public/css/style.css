@@ -1,0 +1,20 @@
+body{
+    background-color: brown;
+    text-align:center;
+    text: white;
+}
+button{
+    color:grey;
+    text-align:center;
+    background:black;
+}
+
+.quoteBox {
+    background-color: beige;
+    border: solid black 2px;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 10px;
+}
+
+
