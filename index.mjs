@@ -72,6 +72,21 @@ app.get('/searchByAuthor', async (req, res) => {
    res.render("results.ejs", {rows});
 });
 
+app.get('/searchByLikes', async (req, res) => {
+    let min = req.query.min;
+    let max = req.query.max;
+    console.log(min);
+    console.log(max);
+    let sql = `SELECT authorId,firstName, lastName, quote, category, likes
+               FROM quotes
+               NATURAL JOIN authors
+               WHERE likes >= ? AND likes <= ?`;
+    let sqlParams = [min, max];
+    const [rows] = await pool.query(sql, sqlParams);
+    console.log(rows);
+   res.render("results.ejs", {rows});
+});
+
 // local api to get all info for a specific author
 app.get('/api/authors/:authorId', async (req, res) => {
     let authorId = req.params.authorId;
