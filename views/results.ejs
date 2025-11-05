@@ -13,61 +13,35 @@
         <% for (let i of rows) { %>
             <div class="quoteBox">
                 "<%= i.quote %>"<br>
-                    <!-- Button trigger modal -->
-                    <a type="button" class="" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <a class="authors" href="#" id="<%= i.authorId %>">
                         <%= i.authorId %>, <%= i.firstName %>
                                 <%= i.lastName %>
                     </a>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 id="authorName" class="modal-title fs-5" id="exampleModalLabel"></h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <img id="authorImg" alt="author image">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
             </div>
             <br><br>
             <% } %>
+    </div>
 
-                <div id="authorInfo">
-                    <h2 id="authorName"></h2>
-                    <img id="authorImg">
+    <!-- Modal -->
+    <div id="authorModal" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Author Information</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div class="modal-body">
+                    <div id="authorInfo"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
     <%- include("partials/footer.ejs") %>
-        <script>
-            $(".authors").addEventListener("click", getAuthorInfo);
-
-            function $(selector) {
-                return document.querySelector(selector);
-            }
-
-            async function getAuthorInfo() {
-                let authorId = this.getAttribute("authorId");
-                let url = "api/authors/" + authorId;
-                let response = await fetch(url);
-                let data = await response.json();
-                console.log(data);
-                $("#authorName").textContent = data[0].firstName + " " + data[0].lastName;
-                $("#authorImg").src = data[0].portrait;
-
-            }
-
-        </script>
+        <script src="/js/results.js"></script>
 </body>
 
 </html>

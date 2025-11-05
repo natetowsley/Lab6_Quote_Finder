@@ -1,69 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <%- include("partials/head.ejs") %>
-    <title>Quote Finder</title>
+        <title>Quote Finder</title>
 </head>
-<body class = text-center>
-    <h1 class="text-white p-4">Quote Finder</h1>
 
-    <form action="/searchByKeyword" method="GET">
-        <label>Keyword: <input id="keyIn" type="text" name="keyword"></label>
-        <button id="keyBtn" class="btn btn-outline-success">Search</button>
-    </form>
-    <h4 id="error"></h4>
+<body class=text-center>
+    <div id="menu">
+        <h1 class="text-white p-4">Quote Finder</h1>
 
-    <br><br>
+        <form id="keySearch" action="/searchByKeyword" method="GET">
+            <label>Keyword: <input id="keyword" type="text" name="keyword"></label>
+            <button id="keyBtn" class="btn btn-outline-success">Search</button>
+        </form>
+        <p id="error"></p>
 
-    <form action="/searchByAuthor" method="GET">
-        <label>
-            Author: <select name="authorId" id="authorDropdown">
-                <% for (let i of rows) { %>
-                    <option value="<%=i.authorId%>"><%= i.firstName %> <%= i.lastName %></option>
-                <% } %>
-            </select>
-        </label>
-        <button class="btn btn-outline-success">Search</button>
-    </form>
-
-    <br><br>
-
-    <form action="/searchByCategory" method="GET">
-        <label>
-            Category: <select name="category" id="categoryDropdown">
-                <% for (let i of rows2) { %>
-                    <option value="<%=i.category%>"><%= i.category %></option>
-                <% } %>
-            </select>
-        </label>
-        <button class="btn btn-outline-success">Search</button>
-    </form>
-
-    <br><br>
-
-    <form action="/searchByLikes" method="GET">
-        <label>
-            <h5>Enter Likes</h5>
-            Min: <input class="likesInput" type="number" min="0" name="min">
-            Max: <input class="likesInput" type="number" min="0" name="max">
-        </label>
         <br><br>
-        <button class="btn btn-outline-success">Search By Likes</button>
-    </form>
+
+        <form action="/searchByAuthor" method="GET">
+            <label>
+                Author: <select name="authorId" id="authorDropdown">
+                    <% for (let i of rows) { %>
+                        <option value="<%=i.authorId%>">
+                            <%= i.firstName %>
+                                <%= i.lastName %>
+                        </option>
+                        <% } %>
+                </select>
+            </label>
+            <button class="btn btn-outline-success">Search</button>
+        </form>
+
+        <br><br>
+
+        <form action="/searchByCategory" method="GET">
+            <label>
+                Category: <select name="category" id="categoryDropdown">
+                    <% for (let i of rows2) { %>
+                        <option value="<%=i.category%>">
+                            <%= i.category %>
+                        </option>
+                        <% } %>
+                </select>
+            </label>
+            <button class="btn btn-outline-success">Search</button>
+        </form>
+
+        <br><br>
+
+        <form action="/searchByLikes" method="GET">
+            <label>
+                <h5>Enter Likes</h5>
+                <input placeholder="Min" class="likesInput" type="number" min="0" name="min">
+                <input placeholder="Max" class="likesInput" type="number" min="0" name="max">
+            </label>
+            <br><br>
+            <button class="btn btn-outline-success">Search By Likes</button>
+        </form>
+    </div>
+    <br><br>
 
     <%- include("partials/footer.ejs") %>
+        <script src="/js/home.js"></script>
 </body>
-<script>
-    document.querySelector("#keyIn").addEventListener("keydown", checkKeyword);
 
-    function checkKeyword() {
-        let word = document.querySelector("#keyIn").value;
-        if (word.length < 3) {
-            document.querySelector("#error").textContent = "ERROR: keyword must be more than 3 characters";
-        }
-        else {
-            document.querySelector("#error").textContent = "";
-        }
-    }
-</script>
 </html>

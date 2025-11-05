@@ -4,6 +4,12 @@ body{
     color: white;
 }
 
+#menu {
+    margin:0 auto;
+    width: max-content;
+    padding: 20px;
+}
+
 button{
     color:grey;
     text-align:center;
@@ -11,12 +17,14 @@ button{
 }
 
 .quoteBox {
+    margin: 0 auto;
     color: black;
-    background-color: beige;
+    background-color: white;
     border: solid black 2px;
+    width:800px;
     border-radius: 10px;
     padding: 5px;
-    margin: 10px;
+    margin-top: 10px;
 }
 
 .likesInput {
