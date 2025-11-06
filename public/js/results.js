@@ -20,4 +20,5 @@ async function getAuthorInfo() {
     authorInfo.innerHTML += `<strong>Date of Birth:</strong> ${dob.toDateString()}<br>`;
     authorInfo.innerHTML += `<strong>Date of Death:</strong> ${dod.toDateString()}<br>`;
     authorInfo.innerHTML += `<strong>Profession:</strong> ${data[0].profession}<br>`;
+    authorInfo.innerHTML += `<strong>Sex:</strong> ${data[0].sex}<br>`;
 }
